@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Boojum Trail Compliance Checker</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+
+    <!-- =====================================================
+       HEADER
+       ===================================================== -->
+    <header class="site-header">
+        <div class="header-inner">
+            <div class="header-eyebrow">Internal Tool · Food Safety</div>
+            <h1 class="header-title">TRAIL <span>COMPLIANCE</span><br>CHECKER</h1>
+            <p class="header-sub">Check temperature logs against food safety regulations — 3-hour intervals, minimum
+                temps, unsigned entries.</p>
+            <div class="header-rules">
+                <span class="rule-pill">Cooking: <strong>≥75°C</strong> (≥85°C chicken)</span>
+                <span class="rule-pill">Reheating: <strong>≥75°C</strong></span>
+                <span class="rule-pill">Check interval: <strong>every 3 hours</strong></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- =====================================================
+       MAIN
+       ===================================================== -->
+    <main class="main">
+
+        <!-- Input card -->
+        <div class="card">
+            <div class="card-label">Paste your trail records</div>
+            <textarea id="recordInput" placeholder="1	Rice	26089	89.4°C	Nahuel	11:28 - 14/06/2026
+2	Pinto Beans	11620	87.4°C	Nahuel	11:28 - 14/06/2026
+..."></textarea>
+
+            <div class="btn-row">
+                <button class="btn btn-primary" onclick="runCheck()">Run check</button>
+                <button class="btn btn-secondary" onclick="loadSample()">Load sample data</button>
+                <button class="btn btn-ghost" onclick="clearAll()">Clear</button>
+            </div>
+        </div>
+
+        <!-- Results injected here -->
+        <div id="results">
+            <div class="empty-state">
+                <span class="empty-icon">🌯</span>
+                <p>Paste your records above and hit <strong>Run check</strong></p>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- =====================================================
+       FOOTER
+       ===================================================== -->
+    <footer class="site-footer">
+        <strong>BOOJUM</strong> &nbsp;·&nbsp; Trail Compliance Checker &nbsp;·&nbsp; Internal use only ·&nbsp;
+        <strong>Created by HELENA GARCIA</strong>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,505 @@
+/* =====================================================
+       ===================================================== */
+    :root {
+      --green:       #1B3A2D;   /* Dark forest green */
+      --green-mid:   #254D3C;   /* slightly lighter green for hover states */
+      --cream:       #F5F0E8;   /* warm off-white background */
+      --cream-dark:  #EAE4D6;   /* borders, card backgrounds */
+      --orange:      #E8602C;   /* accent / CTA / violations */
+      --orange-dark: #C44E22;
+      --gold:        #D4A843;   /* warning amber */
+      --ink:         #1A1A14;   /* near-black text */
+      --pass-green:  #2E6B3E;
+      --pass-bg:     #E8F4EA;
+      --fail-bg:     #FDECEA;
+
+      --font-display: 'Bebas Neue', sans-serif;  /* the chunky Boojum-style headline font */
+      --font-body:    'Inter', sans-serif;
+      --font-mono:    'JetBrains Mono', monospace;
+    }
+
+    /* =====================================================
+       RESET
+       ===================================================== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* =====================================================
+       PAGE
+       ===================================================== */
+    body {
+      background: var(--cream);
+      color: var(--ink);
+      font-family: var(--font-body);
+      font-size: 14px;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* =====================================================
+       HEADER
+       ===================================================== */
+    .site-header {
+      background: var(--green);
+      position: relative;
+      overflow: hidden;
+      padding: 2.5rem 2rem 2rem;
+    }
+
+    /* The diagonal stripe overlay */
+    .site-header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        -55deg,
+        transparent,
+        transparent 28px,
+        rgba(232, 96, 44, 0.12) 28px,
+        rgba(232, 96, 44, 0.12) 32px
+      );
+      pointer-events: none;
+    }
+
+    .header-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* The little INTERNAL TOOL eyebrow label */
+    .header-eyebrow {
+      display: inline-block;
+      font-family: var(--font-body);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--orange);
+      background: rgba(232, 96, 44, 0.15);
+      border: 1px solid rgba(232, 96, 44, 0.35);
+      border-radius: 3px;
+      padding: 3px 8px;
+      margin-bottom: 10px;
+    }
+
+    .header-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.8rem, 7vw, 5rem);
+      color: var(--cream);
+      letter-spacing: 0.03em;
+      line-height: 0.95;
+      margin-bottom: 10px;
+    }
+
+    /* Orange underline accent on just one word */
+    .header-title span {
+      color: var(--orange);
+    }
+
+    .header-sub {
+      font-size: 13px;
+      color: rgba(245, 240, 232, 0.65);
+      max-width: 480px;
+      margin-top: 8px;
+    }
+
+    /* The three rules badges at the top right */
+    .header-rules {
+      margin-top: 1.25rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .rule-pill {
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--cream);
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 20px;
+      padding: 4px 12px;
+    }
+
+    .rule-pill strong {
+      color: var(--orange);
+    }
+
+    /* =====================================================
+       MAIN CONTENT WRAPPER
+       ===================================================== */
+    .main {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 4rem;
+    }
+
+    /* =====================================================
+       INPUT CARD
+       ===================================================== */
+    .card {
+      background: #fff;
+      border: 1px solid var(--cream-dark);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .card-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 8px;
+    }
+
+    textarea {
+      width: 100%;
+      height: 190px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      line-height: 1.6;
+      padding: 12px 14px;
+      border: 1.5px solid var(--cream-dark);
+      border-radius: 8px;
+      background: var(--cream);
+      color: var(--ink);
+      resize: vertical;
+      transition: border-color 0.15s;
+    }
+
+    textarea:focus {
+      outline: none;
+      border-color: var(--green);
+      background: #fff;
+    }
+
+    textarea::placeholder { color: #aaa; }
+
+    /* =====================================================
+       BUTTONS
+       ===================================================== */
+    .btn-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+    }
+
+    /* Base button */
+    .btn {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      letter-spacing: 0.06em;
+      padding: 10px 22px;
+      border: 2px solid transparent;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.15s, transform 0.1s, border-color 0.15s;
+    }
+
+    .btn:active { transform: scale(0.98); }
+
+    /* Primary: orange filled — for the main action */
+    .btn-primary {
+      background: var(--orange);
+      color: #fff;
+      border-color: var(--orange);
+    }
+
+    .btn-primary:hover { background: var(--orange-dark); border-color: var(--orange-dark); }
+
+    /* Secondary: green outline */
+    .btn-secondary {
+      background: transparent;
+      color: var(--green);
+      border-color: var(--green);
+    }
+
+    .btn-secondary:hover { background: var(--green); color: var(--cream); }
+
+    /* Ghost: subtle */
+    .btn-ghost {
+      background: transparent;
+      color: #999;
+      border-color: var(--cream-dark);
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0;
+    }
+
+    .btn-ghost:hover { color: var(--ink); border-color: #bbb; }
+
+    /* =====================================================
+       EMPTY STATE
+       ===================================================== */
+    .empty-state {
+      text-align: center;
+      padding: 4rem 1rem;
+      color: #bbb;
+    }
+
+    .empty-icon {
+      font-size: 3rem;
+      display: block;
+      margin-bottom: 12px;
+    }
+
+    .empty-state p { font-size: 14px; }
+
+    /* =====================================================
+       SUMMARY METRIC STRIP
+       ===================================================== */
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 10px;
+      margin-bottom: 1.5rem;
+    }
+
+    .metric {
+      background: #fff;
+      border: 1px solid var(--cream-dark);
+      border-radius: 10px;
+      padding: 14px 16px;
+    }
+
+    .metric-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #999;
+      margin-bottom: 4px;
+    }
+
+    .metric-value {
+      font-family: var(--font-display);
+      font-size: 2.2rem;
+      letter-spacing: 0.02em;
+      line-height: 1;
+    }
+
+    .metric-value.c-green  { color: var(--pass-green); }
+    .metric-value.c-red    { color: var(--orange); }
+    .metric-value.c-amber  { color: var(--gold); }
+    .metric-value.c-ink    { color: var(--ink); }
+
+    /* The overall pass/fail metric gets a coloured background */
+    .metric.status-pass { background: var(--pass-bg); border-color: #b5d9bc; }
+    .metric.status-fail { background: var(--fail-bg); border-color: #f5c0b8; }
+
+    /* =====================================================
+       SECTION EYEBROW
+       ===================================================== */
+    .section-eyebrow {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .section-eyebrow::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--cream-dark);
+    }
+
+    /* =====================================================
+       FOOD GROUP CARDS
+       ===================================================== */
+    .food-group {
+      background: #fff;
+      border: 1.5px solid var(--cream-dark);
+      border-radius: 12px;
+      margin-bottom: 10px;
+      overflow: hidden;
+      transition: border-color 0.15s;
+    }
+
+    .food-group.has-violation {
+      border-color: #f5c0b8;
+    }
+
+    .food-group-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 13px 16px;
+      cursor: pointer;
+      user-select: none;
+      background: var(--cream);
+      transition: background 0.12s;
+    }
+
+    .food-group.has-violation .food-group-header {
+      background: #FEF5F3;
+    }
+
+    .food-group-header:hover { filter: brightness(0.97); }
+
+    .food-name {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      letter-spacing: 0.04em;
+      color: var(--ink);
+      flex: 1;
+    }
+
+    /* Status dot */
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .dot-ok  { background: var(--pass-green); }
+    .dot-bad { background: var(--orange); }
+
+    /* Pill badges */
+    .pill {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 20px;
+      letter-spacing: 0.03em;
+    }
+
+    .pill-ok   { background: var(--pass-bg);  color: var(--pass-green); }
+    .pill-bad  { background: var(--fail-bg);  color: #B83C28; }
+    .pill-warn { background: #FEF6E4; color: #8A6108; }
+
+    .check-count {
+      font-size: 12px;
+      color: #aaa;
+    }
+
+    /* Chevron toggle */
+    .chevron {
+      color: #ccc;
+      font-size: 18px;
+      line-height: 1;
+      transition: transform 0.18s ease;
+      flex-shrink: 0;
+    }
+
+    .chevron.open { transform: rotate(180deg); }
+
+    /* =====================================================
+       ENTRIES TABLE INSIDE EACH CARD
+       ===================================================== */
+    .food-entries { display: block; }
+
+    .col-header {
+      display: grid;
+      grid-template-columns: 68px 1fr 90px 80px 1fr;
+      gap: 8px;
+      padding: 6px 16px;
+      background: #FAFAF8;
+      border-top: 1px solid var(--cream-dark);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #bbb;
+    }
+
+    .entry-row {
+      display: grid;
+      grid-template-columns: 68px 1fr 90px 80px 1fr;
+      gap: 8px;
+      padding: 9px 16px;
+      border-top: 1px solid #F5F5F0;
+      align-items: center;
+      font-size: 13px;
+      transition: background 0.1s;
+    }
+
+    .entry-row:hover { background: #FAFAF8; }
+    .entry-row.row-violation { background: #FEF9F8; }
+    .entry-row.row-violation:hover { background: #FDECEA; }
+
+    .entry-time {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: #999;
+    }
+
+    .entry-item { color: var(--ink); font-weight: 500; }
+
+    .temp-pass { color: var(--pass-green); font-weight: 600; font-family: var(--font-mono); font-size: 12px; }
+    .temp-fail { color: var(--orange);     font-weight: 600; font-family: var(--font-mono); font-size: 12px; }
+
+    .entry-signer { color: #999; font-size: 12px; }
+
+    .gap-ok        { font-size: 12px; color: #ccc; }
+    .gap-violation { font-size: 12px; color: var(--orange); font-weight: 600; }
+    .gap-first     { font-size: 12px; color: #ddd; font-style: italic; }
+
+    .unsigned-flag {
+      font-size: 10px;
+      color: #B83C28;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-left: 4px;
+    }
+
+    /* =====================================================
+       ERROR MESSAGE
+       ===================================================== */
+    .error-card {
+      background: var(--fail-bg);
+      border: 1.5px solid #f5c0b8;
+      border-radius: 10px;
+      padding: 14px 18px;
+      color: #B83C28;
+      font-size: 14px;
+    }
+
+    /* =====================================================
+       FOOTER
+       ===================================================== */
+    .site-footer {
+      background: var(--green);
+      color: rgba(245,240,232,0.5);
+      text-align: center;
+      padding: 1.25rem;
+      font-size: 12px;
+      letter-spacing: 0.04em;
+    }
+
+    .site-footer strong {
+      color: var(--orange);
+      font-family: var(--font-display);
+      font-size: 1rem;
+      letter-spacing: 0.08em;
+    }
+
+    /* =====================================================
+       RESPONSIVE
+       ===================================================== */
+    @media (max-width: 600px) {
+      .col-header,
+      .entry-row {
+        grid-template-columns: 58px 1fr 72px;
+      }
+
+      /* Hide signer + gap columns on mobile */
+      .col-header span:nth-child(4),
+      .col-header span:nth-child(5),
+      .entry-row > *:nth-child(4),
+      .entry-row > *:nth-child(5) {
+        display: none;
+      }
+    }
