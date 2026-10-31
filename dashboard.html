@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Trail Compliance Dashboard</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="dashboard.css?v=2">
+</head>
+
+<body>
+    <header>
+        <div class="wrap">
+            <div class="eyebrow"><span id="store-name">Boojum</span> &middot; Food Safety</div>
+            <h1>Trail Compliance <span>Dashboard</span></h1>
+
+            <!-- Navigation -->
+            <nav class="site-nav" aria-label="Main navigation">
+                <a href="index.html">Check</a>
+                <a href="dashboard.html" aria-current="page">Dashboard</a>
+            </nav>
+
+        </div>
+    </header>
+
+    <main class="wrap">
+        <p id="status" class="muted" role="status" aria-live="polite"></p>
+        <p id="notice" class="notice" role="status"></p>
+        <section id="stats" class="stats" aria-label="Month totals"></section>
+
+        <div class="grid">
+            <section class="card" aria-label="Calendar">
+                <div class="cal-head">
+                    <h2 id="month-title"></h2>
+                    <div class="cal-nav">
+                        <button id="prev" class="btn" type="button" aria-label="Previous month">&lsaquo;</button>
+                        <button id="next" class="btn" type="button" aria-label="Next month">&rsaquo;</button>
+                    </div>
+                </div>
+                <div class="cal" aria-hidden="true">
+                    <div class="weekday">Mon</div>
+                    <div class="weekday">Tue</div>
+                    <div class="weekday">Wed</div>
+                    <div class="weekday">Thu</div>
+                    <div class="weekday">Fri</div>
+                    <div class="weekday">Sat</div>
+                    <div class="weekday">Sun</div>
+                </div>
+                <div id="calendar" class="cal"></div>
+                <div class="legend">
+                    <span><strong>OK</strong> compliant day</span>
+                    <span><strong id="issueShare">0%</strong>
+                        share of food items with an issue</span>
+
+                    <span><strong>&ndash;</strong> not checked</span>
+                </div>
+            </section>
+
+            <aside id="detail" aria-live="polite" aria-label="Day detail"></aside>
+        </div>
+
+        <div id="tools" class="tools"></div>
+        <p id="note" class="footnote"></p>
+    </main>
+
+    <script src="rules.js?v=2"></script>
+    <script src="storage.js?v=2"></script>
+    <script src="config.js?v=2"></script>
+    <script src="dashboardData.js?v=2"></script>
+    <script src="dashboard.js?v=2"></script>
+    <script>
+        // Copy checks saved by the first version into the new format before the page reads them.
+        let migrationNotice = '';
+        try {
+            migrationNotice = TrailStorage.describeMigration(TrailStorage.migrateLegacy(new Date().toISOString()));
+        } catch (err) {
+            // damaged data is reported by the dashboard itself when it loads
+        }
+        Dashboard.init({ source: SavedSource, storeName: STORE_CONFIG.storeName, notice: migrationNotice });
+    </script>
+</body>
+
+</html>
