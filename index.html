@@ -50,9 +50,13 @@
         <!-- Input card -->
         <div class="card">
             <div class="card-label">Paste your trail records</div>
-            <textarea id="recordInput" placeholder="1	Rice	26089	89.4°C	Nahuel	11:28 - 14/06/2026
-2	Pinto Beans	11620	87.4°C	Nahuel	11:28 - 14/06/2026
+            <textarea id="recordInput" placeholder="1	Rice	26089	89.4°C	Helena	11:28 - 14/06/2026
+2	Pinto Beans	11620	87.4°C	Helena	11:28 - 14/06/2026
 ..."></textarea>
+            <div class="field">
+                <label for="checkedBy">Checked by <span class="field-hint">(supervisor initials)</span></label>
+                <input id="checkedBy" type="text" maxlength="4" autocomplete="off" placeholder="e.g. HG" />
+            </div>
 
             <div class="btn-row">
                 <button class="btn btn-primary" onclick="runCheck()">Run check</button>
@@ -79,6 +83,10 @@
         <strong>Created by HELENA GARCIA</strong>
     </footer>
 
+    <script src="sample-data.js"></script>
+    <script src="rules.js"></script>
+    <script src="storage.js"></script>
+    <script src="config.js"></script>
     <script src="script.js"></script>
 </body>
 
